@@ -175,24 +175,23 @@
     transform: rotate(-8deg);
     border-radius: 2px;
   }
-  .polaroid .photo{
-    width:100%;
-    height: 150px;
-    border-radius: 1px;
-    background: linear-gradient(180deg,#cfcfcf,#8a8a8a 40%, #444 100%);
-    position:relative;
-    overflow:hidden;
-  }
-  .polaroid .photo::after{
-    content:"🧑🏻‍🦱";
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-    font-size:70px;
-    filter: grayscale(0.2);
-  }
+.polaroid .photo{
+  width: 100%;
+  height: 150px;
+  border-radius: 1px;
+  position: relative;
+  overflow: hidden;
+  background: #eee; /* fallback jika gambar belum ke-load */
+}
+
+.polaroid .photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* isi penuh & crop rapi, tanpa gepeng */
+  object-position: center top; /* fokus ke bagian atas foto (wajah) */
+  display: block;
+}
+
   .clip{
     position:absolute;
     top: -18px;
