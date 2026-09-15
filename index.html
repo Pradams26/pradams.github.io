@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+  <title>Pradams — Video Editor</title>
+
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+  <script>
+
+    tailwind.config = {
+
+      theme: {
+
+        extend: {
+
+          fontFamily: {
+
+            sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+
+          },
+
+          animation: {
+
+            float: 'float 4s ease-in-out infinite',
+
+            marquee: 'marquee 18s linear infinite',
+
+          },
+
+          keyframes: {
+
+            float: {
+
+              '0%, 100%': { transform: 'translateY(0)' },
+
+              '50%': { transform: 'translateY(-8px)' },
+
+            },
+
+            marquee: {
+
+              '0%': { transform: 'translateX(0)' },
+
+              '100%': { transform: 'translateX(-50%)' },
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  </script>
+
+
+
+  <style>
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+
+
+    body {
+
+      background: #0a0a0a;
+
+      color: #f5f5f5;
+
+    }
+
+
+
+    ::selection {
+
+      background: #fff;
+
+      color: #000;
+
+    }
+
+
+
+    .project-image {
+
+      transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+
+    }
+
+
+
+    .project:hover .project-image {
+
+      transform: scale(1.035);
+
+    }
+
+
+
+    .project-overlay {
+
+      opacity: 0;
+
+      transition: opacity 0.4s ease;
+
+    }
+
+
+
+    .project:hover .project-overlay {
+
+      opacity: 1;
+
+    }
+
+
+
+    .video-placeholder {
+
+      background:
+
+        linear-gradient(135deg, rgba(255,255,255,.08), transparent 50%),
+
+        linear-gradient(45deg, #151515, #303030);
+
+    }
+
+
+
+    .grain {
+
+      pointer-events: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 50;
+
+      opacity: .035;
+
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+    }
+
+  </style>
+
+</head>
+
+
+
+<body class="font-sans antialiased">
+
+
+
+  <div class="grain"></div>
+
+
+
+  <!-- NAVIGATION -->
+
+  <nav class="fixed top-0 left-0 right-0 z-40 px-6 md:px-10 py-6">
+
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+
+
+      <a href="#" class="text-xl font-bold tracking-tight">
+
+        pradams<span class="text-neutral-500">.</span>
+
+      </a>
+
+
+
+      <div class="hidden md:flex items-center gap-8 text-sm text-neutral-400">
+
+        <a href="#work" class="hover:text-white transition">Work</a>
+
+        <a href="#about" class="hover:text-white transition">About</a>
+
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+
+      </div>
+
+
+
+      <a
+
+        href="#contact"
+
+        class="border border-white/20 rounded-full px-5 py-2 text-sm hover:bg-white hover:text-black transition"
+
+      >
+
+        Let's talk
+
+      </a>
+
+
+
+    </div>
+
+  </nav>
+
+
+
+
+
+  <!-- HERO -->
+
+  <section class="min-h-screen flex items-center px-6 md:px-10 pt-24">
+
+
+
+    <div class="max-w-7xl mx-auto w-full">
+
+
+
+      <div class="max-w-5xl">
+
+
+
+        <p class="text-sm text-neutral-500 mb-8 tracking-wide uppercase">
+
+          Video Editor / Visual Storyteller
+
+        </p>
+
+
+
+        <h1 class="text-[13vw] md:text-[9vw] leading-[.82] tracking-[-0.07em] font-medium">
+
+          I make<br>
+
+          <span class="text-neutral-500">things move.</span>
+
+        </h1>
+
+
+
+        <div class="mt-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
+
+
+
+          <p class="text-neutral-400 max-w-md leading-relaxed">
+
+            I'm Pradams, a video editor focused on turning ideas,
+
+            footage and sound into stories that actually feel like something.
+
+          </p>
+
+
+
+          <div class="flex items-center gap-3 text-sm text-neutral-500">
+
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+
+            Available for freelance
+
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </section>
+
+
+
+
+
+  <!-- MARQUEE -->
+
+  <div class="border-y border-white/10 overflow-hidden py-5">
+
+    <div class="flex whitespace-nowrap animate-marquee w-max">
+
+
+
+      <div class="flex items-center gap-10 text-sm uppercase tracking-[.2em] text-neutral-500">
+
+        <span>Editing</span>
+
+        <span>✦</span>
+
+        <span>Motion</span>
+
+        <span>✦</span>
+
+        <span>Color</span>
+
+        <span>✦</span>
+
+        <span>Sound</span>
+
+        <span>✦</span>
+
+        <span>Storytelling</span>
+
+        <span>✦</span>
+
+
+
+        <span>Editing</span>
+
+        <span>✦</span>
+
+        <span>Motion</span>
+
+        <span>✦</span>
+
+        <span>Color</span>
+
+        <span>✦</span>
+
+        <span>Sound</span>
+
+        <span>✦</span>
+
+        <span>Storytelling</span>
+
+        <span>✦</span>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- WORK -->
+
+  <section id="work" class="px-6 md:px-10 py-32">
+
+
+
+    <div class="max-w-7xl mx-auto">
+
+
+
+      <div class="flex items-end justify-between mb-16">
+
+
+
+        <div>
+
+          <p class="text-sm text-neutral-500 mb-4">01 / Selected work</p>
+
+          <h2 class="text-4xl md:text-6xl tracking-tight">
+
+            Recent cuts.
+
+          </h2>
+
+        </div>
+
+
+
+        <span class="hidden md:block text-sm text-neutral-500">
+
+          2023 — 2026
+
+        </span>
+
+
+
+      </div>
+
+
+
+
+
+      <!-- PROJECT 01 -->
+
+      <a href="#" class="project block mb-24">
+
+
+
+        <div class="relative aspect-video overflow-hidden rounded-sm bg-neutral-900">
+
+
+
+          <div class="project-image absolute inset-0 video-placeholder flex items-center justify-center">
+
+
+
+            <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/50"></div>
+
+
+
+            <div class="relative text-center">
+
+              <p class="text-[10vw] md:text-[8vw] font-bold tracking-[-.08em] opacity-10">
+
+                AFTER
+
+              </p>
+
+            </div>
+
+
+
+          </div>
+
+
+
+          <div class="project-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
+
+            <div class="w-20 h-20 rounded-full bg-white text-black flex items-center justify-center">
+
+              <span class="text-xl ml-1">▶</span>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+
+
+        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mt-5">
+
+
+
+          <div>
+
+            <h3 class="text-xl md:text-2xl">After Hours</h3>
+
+            <p class="text-neutral-500 text-sm mt-1">
+
+              Short Film / Editing / Color
+
+            </p>
+
+          </div>
+
+
+
+          <span class="text-sm text-neutral-500">2026</span>
+
+
+
+        </div>
+
+
+
+      </a>
+
+
+
+
+
+      <!-- TWO COLUMN -->
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+
+
+
+
+        <!-- PROJECT 02 -->
+
+        <a href="#" class="project">
+
+
+
+          <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-neutral-900">
+
+
+
+            <div class="project-image absolute inset-0 bg-gradient-to-br from-neutral-700 via-neutral-800 to-black flex items-center justify-center">
+
+
+
+              <div class="text-center">
+
+                <p class="text-[10vw] md:text-[6vw] font-bold tracking-[-.08em] opacity-10">
+
+                  FORM
+
+                </p>
+
+              </div>
+
+
+
+            </div>
+
+
+
+            <div class="project-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
+
+              <div class="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center">
+
+                <span class="ml-1">▶</span>
+
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+
+
+          <div class="flex justify-between mt-5">
+
+
+
+            <div>
+
+              <h3 class="text-xl">Form / Function</h3>
+
+              <p class="text-neutral-500 text-sm mt-1">
+
+                Brand Film / Motion
+
+              </p>
+
+            </div>
+
+
+
+            <span class="text-sm text-neutral-500">2025</span>
+
+
+
+          </div>
+
+
+
+        </a>
+
+
+
+
+
+        <!-- PROJECT 03 -->
+
+        <a href="#" class="project md:mt-32">
+
+
+
+          <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-neutral-900">
+
+
+
+            <div class="project-image absolute inset-0 bg-gradient-to-tr from-black via-neutral-800 to-neutral-500 flex items-center justify-center">
+
+
+
+              <div class="text-center">
+
+                <p class="text-[10vw] md:text-[6vw] font-bold tracking-[-.08em] opacity-10">
+
+                  NOISE
+
+                </p>
+
+              </div>
+
+
+
+            </div>
+
+
+
+            <div class="project-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
+
+              <div class="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center">
+
+                <span class="ml-1">▶</span>
+
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+
+
+          <div class="flex justify-between mt-5">
+
+
+
+            <div>
+
+              <h3 class="text-xl">Beautiful Noise</h3>
+
+              <p class="text-neutral-500 text-sm mt-1">
+
+                Music Video / Editing
+
+              </p>
+
+            </div>
+
+
+
+            <span class="text-sm text-neutral-500">2025</span>
+
+
+
+          </div>
+
+
+
+        </a>
+
+
+
+      </div>
+
+
+
+
+
+      <!-- PROJECT 04 -->
+
+      <a href="#" class="project block mt-24">
+
+
+
+        <div class="relative aspect-video overflow-hidden rounded-sm bg-neutral-900">
+
+
+
+          <div class="project-image absolute inset-0 bg-gradient-to-r from-neutral-800 via-neutral-700 to-black flex items-center justify-center">
+
+
+
+            <div class="text-center">
+
+              <p class="text-[10vw] md:text-[8vw] font-bold tracking-[-.08em] opacity-10">
+
+                HUMAN
+
+              </p>
+
+            </div>
+
+
+
+          </div>
+
+
+
+          <div class="project-overlay absolute inset-0 bg-black/30 flex items-center justify-center">
+
+            <div class="w-20 h-20 rounded-full bg-white text-black flex items-center justify-center">
+
+              <span class="text-xl ml-1">▶</span>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+
+
+        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mt-5">
+
+
+
+          <div>
+
+            <h3 class="text-xl md:text-2xl">Human / Nature</h3>
+
+            <p class="text-neutral-500 text-sm mt-1">
+
+              Documentary / Editing / Sound Design
+
+            </p>
+
+          </div>
+
+
+
+          <span class="text-sm text-neutral-500">2024</span>
+
+
+
+        </div>
+
+
+
+      </a>
+
+
+
+    </div>
+
+
+
+  </section>
+
+
+
+
+
+  <!-- ABOUT -->
+
+  <section id="about" class="px-6 md:px-10 py-32 border-t border-white/10">
+
+
+
+    <div class="max-w-7xl mx-auto">
+
+
+
+      <div class="grid md:grid-cols-12 gap-12">
+
+
+
+        <div class="md:col-span-4">
+
+          <p class="text-sm text-neutral-500">02 / About</p>
+
+        </div>
+
+
+
+        <div class="md:col-span-7 md:col-start-6">
+
+
+
+          <h2 class="text-3xl md:text-5xl leading-tight tracking-tight">
+
+            Editing isn't just about cutting footage.
+
+            It's about knowing <span class="text-neutral-500">what to leave out.</span>
+
+          </h2>
+
+
+
+          <div class="mt-12 space-y-6 text-neutral-400 leading-relaxed max-w-2xl">
+
+
+
+            <p>
+
+              I'm Pradams, a Jakarta-based video editor working across
+
+              commercial, documentary, music and digital content.
+
+            </p>
+
+
+
+            <p>
+
+              I care about rhythm, pacing, composition, sound and all
+
+              the tiny details that make an edit feel intentional.
+
+            </p>
+
+
+
+          </div>
+
+
+
+
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-8 border-t border-white/10">
+
+
+
+            <div>
+
+              <p class="text-2xl text-white">05+</p>
+
+              <p class="text-xs text-neutral-500 mt-2">Years editing</p>
+
+            </div>
+
+
+
+            <div>
+
+              <p class="text-2xl text-white">80+</p>
+
+              <p class="text-xs text-neutral-500 mt-2">Projects</p>
+
+            </div>
+
+
+
+            <div>
+
+              <p class="text-2xl text-white">20+</p>
+
+              <p class="text-xs text-neutral-500 mt-2">Brands</p>
+
+            </div>
+
+
+
+            <div>
+
+              <p class="text-2xl text-white">ID</p>
+
+              <p class="text-xs text-neutral-500 mt-2">Based in Jakarta</p>
+
+            </div>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </section>
+
+
+
+
+
+  <!-- SERVICES -->
+
+  <section class="px-6 md:px-10 py-32">
+
+
+
+    <div class="max-w-7xl mx-auto">
+
+
+
+      <div class="mb-16">
+
+        <p class="text-sm text-neutral-500 mb-4">03 / Capabilities</p>
+
+        <h2 class="text-4xl md:text-6xl tracking-tight">
+
+          What I do.
+
+        </h2>
+
+      </div>
+
+
+
+
+
+      <div class="border-t border-white/10">
+
+
+
+        <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 hover:px-4 transition-all">
+
+
+
+          <div class="flex items-center gap-6">
+
+            <span class="text-neutral-600 text-sm">01</span>
+
+            <h3 class="text-2xl">Video Editing</h3>
+
+          </div>
+
+
+
+          <p class="text-neutral-500 text-sm mt-3 md:mt-0">
+
+            Commercials · Social · Documentary
+
+          </p>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 hover:px-4 transition-all">
+
+
+
+          <div class="flex items-center gap-6">
+
+            <span class="text-neutral-600 text-sm">02</span>
+
+            <h3 class="text-2xl">Motion Design</h3>
+
+          </div>
+
+
+
+          <p class="text-neutral-500 text-sm mt-3 md:mt-0">
+
+            Titles · Graphics · 2D Animation
+
+          </p>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 hover:px-4 transition-all">
+
+
+
+          <div class="flex items-center gap-6">
+
+            <span class="text-neutral-600 text-sm">03</span>
+
+            <h3 class="text-2xl">Color</h3>
+
+          </div>
+
+
+
+          <p class="text-neutral-500 text-sm mt-3 md:mt-0">
+
+            Look Development · Grading
+
+          </p>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 hover:px-4 transition-all">
+
+
+
+          <div class="flex items-center gap-6">
+
+            <span class="text-neutral-600 text-sm">04</span>
+
+            <h3 class="text-2xl">Sound Design</h3>
+
+          </div>
+
+
+
+          <p class="text-neutral-500 text-sm mt-3 md:mt-0">
+
+            Soundscape · SFX · Mixing
+
+          </p>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </section>
+
+
+
+
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="px-6 md:px-10 py-32 border-t border-white/10">
+
+
+
+    <div class="max-w-7xl mx-auto">
+
+
+
+      <p class="text-sm text-neutral-500 mb-10">
+
+        04 / Contact
+
+      </p>
+
+
+
+      <h2 class="text-[12vw] md:text-[9vw] leading-[.85] tracking-[-.07em]">
+
+        Got a story?
+
+        <br>
+
+        <span class="text-neutral-500">Let's cut it.</span>
+
+      </h2>
+
+
+
+      <div class="mt-16 flex flex-col md:flex-row md:items-end justify-between gap-10">
+
+
+
+        <a
+
+          href="mailto:hello@pradams.com"
+
+          class="text-xl md:text-3xl border-b border-white pb-2 hover:text-neutral-400 hover:border-neutral-400 transition"
+
+        >
+
+          hello@pradams.com
+
+        </a>
+
+
+
+        <div class="flex gap-6 text-sm text-neutral-500">
+
+
+
+          <a href="#" class="hover:text-white transition">
+
+            Instagram
+
+          </a>
+
+
+
+          <a href="#" class="hover:text-white transition">
+
+            Vimeo
+
+          </a>
+
+
+
+          <a href="#" class="hover:text-white transition">
+
+            Behance
+
+          </a>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </section>
+
+
+
+
+
+  <!-- FOOTER -->
+
+  <footer class="px-6 md:px-10 py-8 border-t border-white/10">
+
+
+
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-4 text-xs text-neutral-600">
+
+
+
+      <p>
+
+        © 2026 Pradams
+
+      </p>
+
+
+
+      <p>
+
+        Designed & edited with intention.
+
+      </p>
+
+
+
+    </div>
+
+
+
+  </footer>
+
+
+
+
+
+  <!-- SIMPLE SCROLL REVEAL -->
+
+  <script>
+
+
+
+    const elements = document.querySelectorAll(
+
+      'section, .project'
+
+    );
+
+
+
+    const observer = new IntersectionObserver(
+
+      entries => {
+
+        entries.forEach(entry => {
+
+
+
+          if (entry.isIntersecting) {
+
+
+
+            entry.target.style.opacity = '1';
+
+            entry.target.style.transform = 'translateY(0)';
+
+
+
+          }
+
+
+
+        });
+
+      },
+
+      {
+
+        threshold: 0.08
+
+      }
+
+    );
+
+
+
+    elements.forEach(el => {
+
+
+
+      el.style.opacity = '0';
+
+      el.style.transform = 'translateY(20px)';
+
+      el.style.transition =
+
+        'opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)';
+
+
+
+      observer.observe(el);
+
+
+
+    });
+
+
+
+  </script>
+
+
+
+</body>
+
+</html>
